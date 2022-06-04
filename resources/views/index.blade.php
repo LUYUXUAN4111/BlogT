@@ -8,7 +8,7 @@
 </head>
 <body>
     @include('header')
-    {{-- @if ($errors->any())
+     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -17,25 +17,5 @@
             </ul>
         </div>
     @endif
-
-    welcome!
-    <br>
-    @if (session('user'))
-        @php
-            $user = unserialize(session('user'));            
-        @endphp        
-        {{$user->getName()}}
-        <a href="{{asset('/logout')}}">ログアウト</a>
-    @else
-    <a href="{{asset('/signup')}}">サインアップ</a>    
-    <form action="{{asset('/login')}}" method="POST">
-            @csrf
-            <input type="email" name="form[email]">
-            <br>
-            <input type="password" name="form[pass]">
-            <br>
-            <button>GO</button>
-        </form>        
-    @endif --}}
 </body>
 </html>

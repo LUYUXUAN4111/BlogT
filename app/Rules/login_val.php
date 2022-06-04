@@ -27,10 +27,11 @@ class login_val implements Rule
      */
     public function passes($attribute, $value)
     {
+        var_dump($value);
         $user = DB::table('users')
                 ->where('email','=',$value["email"])
                 ->where('password','=',hash('ripemd160',$value['pass']))
-                ->first();        
+                ->first();
         return $user != null;
     }
 

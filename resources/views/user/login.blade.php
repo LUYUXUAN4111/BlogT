@@ -7,8 +7,5 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text">
-    <br>
-    <input type="text">
 </body>
 </html>

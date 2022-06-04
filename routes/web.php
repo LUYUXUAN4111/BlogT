@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ArticleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +18,7 @@ Route::post('/login',[UserController::class,'login']);
 
 Route::get('/signup',function(){return view('user.signup');});
 Route::post('/signupToDB',[UserController::class,'signupToDB']);
-
+Route::get('/article/create',[ArticleController::class,'toCreate']);
 Route::get('logout',function(){
     session()->forget('user');
     return view('index');
