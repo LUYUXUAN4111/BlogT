@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{asset('/bootcss/bootstrap.min.css')}}">
 <script src="{{asset('/bootjs/bootstrap.bundle.min.js')}}"></script>
-<header class="p-3 bg-dark text-white">
+<header class="p-3 bg-dark text-white fixed-top">
     <div class="container">
 
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -23,10 +23,10 @@
                 <div class="col-1">
                     <div class="dropdown">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{asset("/img/icon/default.png")}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                            <img src="{{asset($user->getIcon())}}" alt="mdo" width="32" height="32" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-                            <li><a class="dropdown-item" href="article/create">New project...</a></li>
+                            <li><a class="dropdown-item" href="{{asset('article/create')}}">New project...</a></li>
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -70,3 +70,5 @@
           </div>
     </div>
 </header>
+<div style="top: 100px;width: 1px;height: 100px;position: relative"></div>
+<div style="position: fixed;width: 100%;background: #f8f8f8;top: 0px" class="h-100"></div>

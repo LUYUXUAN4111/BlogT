@@ -5,6 +5,7 @@
 
     // use App\Classes\User as ClassesUser;
     use App\Models\User;
+    use App\Models\User_info;
     use Illuminate\Http\Request;
     use App\Rules\email_exist;
     use App\Rules\login_val;
@@ -47,22 +48,25 @@
         public function __construct()
         {
             $this->SIGNUP_RULE["email"][] = new email_exist();
-            $this->LOGIN_RULE["form"] = new login_val(); 
+            $this->LOGIN_RULE["form"] = new login_val();
         }
 
         public function insertUserToDB(&$request){
             $user_db = new User();
-            $user_db->name = $request->name;
+            $user_info_db = new User_info();
             $user_db->email = $request->email;
-            $user_db->password = hash('ripemd160',$request->password);            
+            $user_db->password = hash('ripemd160',$request->password);
             $user_db->save();
+            $user = User::where("email","=",$request->email)->first();
+            $user_info_db->id = $user->id;
+            $user_info_db->email = $request->email;
+            $user_info_db->name = $request->name;
+            $user_info_db->save();
         }
 
         public function login($email){
-            // $name = User::where('email', '=', $email)->value('name');
-            // $user = new ClassesUser();
-            $user = new  ClassesUser();
-            // session(['user'=>$email]);
+             $user_info = User_info::where('email', '=', $email)->first();
+            $user = new  ClassesUser($user_info->id,$user_info->name,$user_info->email,$user_info->icon,$user_info->info);
             session(['user'=>serialize($user)]);
         }
         // public static function test(){

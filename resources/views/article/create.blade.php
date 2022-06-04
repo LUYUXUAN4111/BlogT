@@ -15,28 +15,43 @@
     <div class="position-relative">
         <div class="page-container position-absolute top-0 start-50 translate-middle-x">
             <div class="container" style="padding: 0px;margin: 0px">
-                <div class="row">
-                    <div class="col-6 text-start " >
-                        <input type="text" class="form-control" id="inputPassword">
-                    </div>
-                    <div class="col-3">
-                        <select class="form-select" aria-label="Default select example" name="category[]">
-                            <option selected disabled>カテゴリー</option>
-                            <option value="PHP">PHP</option>
-                            <option value="Laravel">Laravel</option>
-                            <option value="MySQL">MySQL</option>
-                            <option value="Linux">Linux</option>
-                            <option value="JavaScript">JavaScript</option>
-                            <option value="Jquery">Jquery</option>
-                            <option value="HTML5">HTML5</option>
-                            <option value="CSS">CSS</option>
-                        </select>
-                    </div>
-                    <div  class="col-3 text-end">
-                        <button type="button" class="btn btn-primary">アップロード</button>
-                    </div>
+                <form action="{{asset("/article/insertToDB")}}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-6 text-start " >
+                            <input type="text" class="form-control" id="inputPassword" placeholder="タイトル" name="title">
+                        </div>
+                        <div class="col-2 text-center">
+                            <select class="form-select" aria-label="Default select example" name="category">
+                                <option selected disabled>カテゴリー</option>
+                                <option value="PHP">PHP</option>
+                                <option value="Laravel">Laravel</option>
+                                <option value="MySQL">MySQL</option>
+                                <option value="Linux">Linux</option>
+                                <option value="JavaScript">JavaScript</option>
+                                <option value="Jquery">Jquery</option>
+                                <option value="HTML5">HTML5</option>
+                                <option value="CSS">CSS</option>
+                            </select>
+                        </div>
+                        <div class="col-2 text-center">
+                            <select class="form-select" aria-label="Default select example" name="viewable">
+                                <option value="1" selected>公開</option>
+                                <option value="2">フォロワーのみ</option>
+                                <option value="0">非公開</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="article" id="article">
+                        @php
+                            $user = unserialize(session('user'))
+                        @endphp
+                        <input type="hidden" name="user_id" value="{{$user->getId()}}">
+                        <div  class="col-2 text-end">
+                            <button type="submit" class="btn btn-primary">アップロード</button>
+                        </div>
 
-                </div>
+                    </div>
+                </form>
             </div>
             <div class="page-left">
                 <demo-menu></demo-menu>

@@ -2,6 +2,7 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\FollowController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,13 +14,20 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-Route::get('/', function () {return view('index');});
+Route::get('/', [ArticleController::class,'getArticleList']);
 Route::post('/login',[UserController::class,'login']);
+Route::get('logout',function(){
+    session()->forget('user');
+    return redirect(asset('/'));
+});
+Route::post('/follow',[FollowController::class,"follow"]);
+Route::post('/follow_cancel',[FollowController::class,"follow_cancel"]);
 
 Route::get('/signup',function(){return view('user.signup');});
 Route::post('/signupToDB',[UserController::class,'signupToDB']);
+
 Route::get('/article/create',[ArticleController::class,'toCreate']);
-Route::get('logout',function(){
-    session()->forget('user');
-    return view('index');
-});
+Route::post('/article/insertToDB',[ArticleController::class,'insertToDB']);
+Route::get('/article/success',function (){return view('article.success');});
+
+Route::any('/article/detail/{id}',[ArticleController::class,'getDetail']);

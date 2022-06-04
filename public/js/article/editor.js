@@ -7,9 +7,9 @@ E.i18nChangeLanguage(LANG)
 
 window.editor = E.createEditor({
     selector: '#editor-text-area',
-    html: '<p>hello&nbsp;world</p><p><br></p>',
+    html: '',
     config: {
-        placeholder: 'Type here...',
+        placeholder: 'ここに入力してください',
         MENU_CONF: {
             uploadImage: {
                 fieldName: 'your-fileName',
@@ -18,8 +18,7 @@ window.editor = E.createEditor({
         },
         onChange(editor) {
             const html = editor.getHtml()
-            // document.getElementById('editor-content-view').innerHTML = html
-            document.getElementById('editor-content-textarea').value = html
+            document.getElementById('article').value = html
         }
     }
 })

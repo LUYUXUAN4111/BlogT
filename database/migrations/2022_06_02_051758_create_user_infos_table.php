@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user_infos', function (Blueprint $table) {
-            $table->string("email",50)->primary();
+            $table->integer("id");
+            $table->string("email",50);
             $table->string("name",20);
-            $table->string("icon",100)->default("/imgs/icon/default.png");
+            $table->string("icon",100)->default("/images/icon/default.png");
             $table->string("info",200)->nullable();
             $table->timestamps();
         });
