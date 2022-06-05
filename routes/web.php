@@ -3,6 +3,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FollowController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +17,18 @@ use App\Http\Controllers\FollowController;
 
 Route::get('/', [ArticleController::class,'getArticleList']);
 Route::post('/login',[UserController::class,'login']);
+
 Route::get('logout',function(){
     session()->forget('user');
     return redirect(asset('/'));
 });
+Route::get('/user/info/{id}',[UserController::class,'info']);
+
+Route::get('/user/edit',function (){
+    return view("user.edit");
+});
+
+Route::post('/user/update',[UserController::class,'update']);
 Route::post('/follow',[FollowController::class,"follow"]);
 Route::post('/follow_cancel',[FollowController::class,"follow_cancel"]);
 

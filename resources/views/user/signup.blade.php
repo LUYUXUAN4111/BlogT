@@ -23,7 +23,6 @@
         </div>
     </div>
 </header>
-
     <form action="{{asset("/signupToDB")}}" method="POST">
         @csrf
         <div class="container border-1 secondary border" style="padding: 30px;width: 500px;margin-top: 50px">
@@ -58,26 +57,5 @@
             <button type="submit" class="btn btn-primary row">Submit</button>
         </div>
     </form>
-{{--    <form action="{{asset("/signupToDB")}}" method="POST">--}}
-{{--        @csrf--}}
-{{--        @error('name')--}}
-{{--            {{$message}}--}}
-{{--        @enderror--}}
-{{--        <input type="text" name="name" value="{{old('name')}}">--}}
-{{--        <br>--}}
-{{--        @error('email')--}}
-{{--            {{$message}}--}}
-{{--        @enderror--}}
-{{--        <input type="text" name="email" value="{{old('email')}}">--}}
-{{--        <br>--}}
-{{--        @error('password')--}}
-{{--            {{$message}}--}}
-{{--        @enderror--}}
-{{--        <input type="text" name="password" id="password" value="{{old('password')}}">--}}
-{{--        <br>--}}
-{{--        <input type="text" id="password_re">--}}
-{{--        <br>--}}
-{{--        <button>send</button>--}}
-{{--    </form>--}}
 </body>
 </html>

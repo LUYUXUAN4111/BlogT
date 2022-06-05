@@ -57,23 +57,27 @@ class ArticleController extends Controller
         $writer = User_info::where("id","=",$article->user_id)->first();
         $viewable = "1";
         $user_session = unserialize(session("user"));
-        $user_id = $user_session->getId();
-        $follower = DB::table('followers')->where("follow_id","=",$article->user_id)
-            ->where("follower_id","=",$user_id)->first();
-        if($article->viewable!="1"){
-            if ($user_id!=$article->user_id){
-                if ($article->viewable=="0"){
-                    $viewable = "0";
-                }else{
-                    if (!$follower){
-                        $viewable = "2";
+        if($user_session){
+            $user_id = $user_session->getId();
+            $follower = DB::table('followers')->where("follow_id","=",$article->user_id)
+                ->where("follower_id","=",$user_id)->first();
+            if($article->viewable!="1"){
+                if ($user_id!=$article->user_id){
+                    if ($article->viewable=="0"){
+                        $viewable = "0";
                     }else{
-                        $viewable = "3";
+                        if (!$follower){
+                            $viewable = "2";
+                        }else{
+                            $viewable = "3";
+                        }
                     }
                 }
+            }elseif ($follower){
+                $viewable = "3";
             }
-        }elseif ($follower){
-            $viewable = "3";
+        }else{
+            $viewable=$article->viewable;
         }
         return view('article.detail',['article'=>$article,'viewable'=>$viewable,'writer'=>$writer]);
     }

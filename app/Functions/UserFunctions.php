@@ -9,6 +9,7 @@
     use Illuminate\Http\Request;
     use App\Rules\email_exist;
     use App\Rules\login_val;
+    use Illuminate\Support\Facades\DB;
 
     class UserFunctions{
         public  $SIGNUP_RULE = [
@@ -65,11 +66,30 @@
         }
 
         public function login($email){
-             $user_info = User_info::where('email', '=', $email)->first();
+            $user_info = User_info::where('email', '=', $email)->first();
             $user = new  ClassesUser($user_info->id,$user_info->name,$user_info->email,$user_info->icon,$user_info->info);
             session(['user'=>serialize($user)]);
         }
-        // public static function test(){
-        //     return 1;
-        // }
+
+        public function getInfo($id,$owner){
+            $user_info = User_info::where('id', '=', $id)->first();
+            if ($owner){
+                $articles = DB::table("articles")->where('user_id',"=",$user_info->id)->get();
+            }else{
+                $articles = DB::table("articles")->where('user_id',"=",$user_info->id)->where('viewable',"!=",'0')->get();
+            }
+            return [$user_info,$articles];
+        }
+
+        public function update(Request &$request){
+            $icon =  $request->file("icon")->store("images/icon");
+            DB::table('user_infos')->where('id',$request->id)->update(
+                [
+                    'name'=>$request->name,
+                    'icon'=>$icon,
+                    'info'=>$request->info
+                    ]
+            );
+            $this->login(unserialize(session('user'))->getEmail());
+        }
     }

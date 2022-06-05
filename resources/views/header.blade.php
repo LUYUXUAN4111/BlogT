@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{asset('/bootcss/bootstrap.min.css')}}">
 <script src="{{asset('/bootjs/bootstrap.bundle.min.js')}}"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 <header class="p-3 bg-dark text-white fixed-top">
     <div class="container">
 
@@ -26,9 +27,8 @@
                             <img src="{{asset($user->getIcon())}}" alt="mdo" width="32" height="32" class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-                            <li><a class="dropdown-item" href="{{asset('article/create')}}">New project...</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{asset('article/create')}}">New Article</a></li>
+                            <li><a class="dropdown-item" href="{{asset('user/info/'.$user->getId())}}">Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{{asset('/logout')}}">Sign out</a></li>
                         </ul>
@@ -38,10 +38,11 @@
                 {{-- <a href="{{asset('/signup')}}">サインアップ</a>     --}}
 
                         <form action="{{asset('/login')}}" method="POST" class="col-2 text-end">
+                            <input type="hidden" name="url" value="{{url()->full()}}">
                             @csrf
                             <div class="dropdown">
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown link
+                                <a class="link-light nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" id="login_b">
+                                    Sign-In
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -64,11 +65,11 @@
                         </form>
                         <form action="{{asset('/signup')}}" method="get" class="col-2 text-end">
                             @csrf
-                            <button type="submit" class="btn btn-warning">Sign-up</button>
+                            <button type="submit" class="btn btn-outline-light">Sign-up</button>
                         </form>
             @endif
           </div>
     </div>
 </header>
 <div style="top: 100px;width: 1px;height: 100px;position: relative"></div>
-<div style="position: fixed;width: 100%;background: #f8f8f8;top: 0px" class="h-100"></div>
+<div style="position: fixed;width: 100%;background: #f8f8f8;top: 0px;z-index: -1000" class="h-100"></div>

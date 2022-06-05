@@ -36,13 +36,13 @@
         <div class="card w-100">
             <div class="card-body">
                 <h6 class="card-title">
-                    <a href="#" style="text-decoration: none">
+                    <a href="{{asset('user/info/'.$article['user_id'])}}" style="text-decoration: none">
                         <img src="{{asset($article['icon'])}}" width="40px" height="40px" style="border-radius: 50%" class="border border-dark">
                     </a>
                     {{$article['name']}}
                 </h6>
                 <h3 class="card-body">
-                    <a class="link-dark" href="{{asset('article/detail/'.$article['article_id'])}}">
+                    <a class="link-dark" href="{{asset('article/detail/'.$article['article_id'])}}" target="_blank">
                         {{$article['title']}}
                     </a>
                 </h3>

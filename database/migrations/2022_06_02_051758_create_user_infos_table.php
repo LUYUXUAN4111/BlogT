@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("email",50);
             $table->string("name",20);
             $table->string("icon",100)->default("/images/icon/default.png");
-            $table->string("info",200)->nullable();
+            $table->string("info",200)->nullable()->default("自己紹介は書いていません");
             $table->timestamps();
         });
     }
