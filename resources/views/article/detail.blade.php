@@ -6,33 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{asset("css/prism.css")}}">
 
-    <title>Document</title>
+    <title>{{$article->title}}</title>
 </head>
 <body>
     @include('header')
     @php
         $user = unserialize(session('user'));
     @endphp
-    <div style="display: contents">
-        <div class="card" style="width: 300px;padding: 10px;position: fixed;top: 100px;left: 20px">
-            <div class="card-title">
+    <div style="display:grid ;grid-template-columns: 300px auto;position: relative;left: 10%">
+        <div>
+            <div class="card" style="width: 300px;padding: 10px;position: sticky;top: 70px;left: 20pxd;margin-top: 20px">
+                <div class="card-title">
                     <a href="{{asset('user/info/'.$writer->id)}}"><img src="{{asset($writer->icon)}}" width="50px" height="50px" style="border-radius: 50%" class="border border-secondary"></a>
                     {{$writer->name}}
-            </div>
-            <div class="card-body" style="display: contents">
-                <h6>{{$writer->info}}</h6>
-                @if($writer->id!=($user?$user->getId():null))
-                    @if($viewable==3)
-                        <button class="btn btn-outline-secondary text-center" id="follow_b" onclick="follow('{{$writer->id}}','{{$user?$user->getId():-1}}')" type="button" style="position: relative;margin: auto;width: 100px;display: none">フォロー</button>
-                        <button class="btn btn-outline-danger text-center" id="cancel_b" onclick="follow_cancel('{{$writer->id}}','{{$user?$user->getId():-1}}')" type="button" style="position: relative;margin: auto;width: 120px">フォロー解除</button>
-                    @else
-                        <button class="btn btn-outline-secondary text-center" id="follow_b" onclick="follow('{{$writer->id}}','{{$user?$user->getId():-1}}')" type="button" style="position: relative;margin: auto;width: 100px">フォロー</button>
-                        <button class="btn btn-outline-danger text-center" id="cancel_b" onclick="follow_cancel('{{$writer->id}}','{{$user?$user->getId():-1}}')" type="button" style="position: relative;margin: auto;width: 120px;display: none">フォロー解除</button>
+                </div>
+                <div class="card-body" style="display: contents">
+                    <h6>{{$writer->info}}</h6>
+                    @if($writer->id!=($user?$user->getId():null))
+                        @if($viewable==3)
+                            <button class="btn btn-outline-secondary text-center" id="follow_b" onclick="follow('{{$writer->id}}','{{$user?$user->getId():-1}}')" type="button" style="position: relative;margin: auto;width: 100px;display: none">フォロー</button>
+                            <button class="btn btn-outline-danger text-center" id="cancel_b" onclick="follow_cancel('{{$writer->id}}','{{$user?$user->getId():-1}}')" type="button" style="position: relative;margin: auto;width: 120px">フォロー解除</button>
+                        @else
+                            <button class="btn btn-outline-secondary text-center" id="follow_b" onclick="follow('{{$writer->id}}','{{$user?$user->getId():-1}}')" type="button" style="position: relative;margin: auto;width: 100px">フォロー</button>
+                            <button class="btn btn-outline-danger text-center" id="cancel_b" onclick="follow_cancel('{{$writer->id}}','{{$user?$user->getId():-1}}')" type="button" style="position: relative;margin: auto;width: 120px;display: none">フォロー解除</button>
+                        @endif
                     @endif
-                @endif
+                </div>
             </div>
         </div>
-        <div id="article" class=" position-absolute start-50 translate-middle-x border border-secondary" style="max-width: 1000px;width: 80%;padding: 30px;margin: 20px;background: white">
+        <div id="article" class=" border border-secondary" style="max-width: 1000px;width: 80%;padding: 30px;margin: 20px;background: white;word-break: break-word">
             <h1 class="text-center">{{$article->title}}</h1>
             <h6 class="text-end">{{date_format(date_create($article->updated_at),"Y-m-d")}}</h6>
             <hr>

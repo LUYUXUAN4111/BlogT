@@ -82,14 +82,23 @@
         }
 
         public function update(Request &$request){
-            $icon =  $request->file("icon")->store("images/icon");
-            DB::table('user_infos')->where('id',$request->id)->update(
-                [
-                    'name'=>$request->name,
-                    'icon'=>$icon,
-                    'info'=>$request->info
+            if ($request->file("icon")){
+                $icon =  $request->file("icon")->store("images/icon");
+                DB::table('user_infos')->where('id',$request->id)->update(
+                    [
+                        'name'=>$request->name,
+                        'icon'=>$icon,
+                        'info'=>$request->info
                     ]
-            );
+                );
+            }else{
+                DB::table('user_infos')->where('id',$request->id)->update(
+                    [
+                        'name'=>$request->name,
+                        'info'=>$request->info
+                    ]
+                );
+            }
             $this->login(unserialize(session('user'))->getEmail());
         }
     }

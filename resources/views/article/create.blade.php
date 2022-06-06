@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{asset("css/prism.css")}}">
     <script src="{{asset("js/article/index.js")}}"></script>
     <script src="{{asset("js/article/prism.js")}}"></script>
-    <title>Document</title>
+    <title>新しい記事</title>
 </head>
 <body>
     @include('header')
@@ -19,10 +19,10 @@
                     @csrf
                     <div class="row">
                         <div class="col-6 text-start " >
-                            <input type="text" class="form-control" id="inputPassword" placeholder="タイトル" name="title">
+                            <input type="text" class="form-control" id="inputPassword" placeholder="タイトル" name="title" required>
                         </div>
                         <div class="col-2 text-center">
-                            <select class="form-select" aria-label="Default select example" name="category">
+                            <select class="form-select" aria-label="Default select example" name="category" required>
                                 <option selected disabled>カテゴリー</option>
                                 <option value="PHP">PHP</option>
                                 <option value="Laravel">Laravel</option>
@@ -53,6 +53,7 @@
                     </div>
                 </form>
             </div>
+            <br>
             <div class="page-left">
                 <demo-menu></demo-menu>
             </div>

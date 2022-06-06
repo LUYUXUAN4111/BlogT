@@ -13,9 +13,9 @@
               <li><a href="#" class="nav-link px-2 text-white">About</a></li> --}}
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-              <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-            </form>
+{{--            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">--}}
+{{--              <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">--}}
+{{--            </form>--}}
             @if (session('user'))
                 @php
                     $user = unserialize(session('user'));

@@ -11,7 +11,7 @@ class ArticleController extends Controller
 {
     function toCreate(){
         if (!session("user")){
-            return redirect(asset('nologin'));
+            return redirect(asset('/'));
         }
         return view("article.create");
     }
@@ -29,7 +29,7 @@ class ArticleController extends Controller
               'updated_at' => date('Y-m-d h:i:s', time())
           ]
         );
-        return redirect('article/success')->with("id",$id);
+        return redirect('article/detail/'.$id);
     }
 
     function getArticleList(){

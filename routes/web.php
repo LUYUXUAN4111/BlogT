@@ -25,6 +25,9 @@ Route::get('logout',function(){
 Route::get('/user/info/{id}',[UserController::class,'info']);
 
 Route::get('/user/edit',function (){
+    if (!session("user")){
+        return redirect(asset('/'));
+    }
     return view("user.edit");
 });
 

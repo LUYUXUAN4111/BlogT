@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>TopPage</title>
 </head>
 <body>
     @include('header')
@@ -17,20 +17,20 @@
             </ul>
         </div>
     @endif
-    <div class="card" style="width: 250px;left: 30px;position: fixed;top: 80px">
-        <ul class="list-group list-group-flush">
-            @foreach($category as $c)
-                <li class="list-group-item container">
-                    <a href="#" class="dropdown-item">
-                    <div class="row">
-                            <div class="text-start col">{{$c->category}}</div>
-                            <small class="text-end col">{{$c->c}}</small>
-                    </div>
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    </div>
+{{--    <div class="card" style="width: 250px;left: 30px;position: fixed;top: 80px">--}}
+{{--        <ul class="list-group list-group-flush">--}}
+{{--            @foreach($category as $c)--}}
+{{--                <li class="list-group-item container">--}}
+{{--                    <a href="#" class="dropdown-item">--}}
+{{--                    <div class="row">--}}
+{{--                            <div class="text-start col">{{$c->category}}</div>--}}
+{{--                            <small class="text-end col">{{$c->c}}</small>--}}
+{{--                    </div>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            @endforeach--}}
+{{--        </ul>--}}
+{{--    </div>--}}
     <div class="position-absolute start-50 translate-middle-x w-50">
     @foreach($articles as $article)
         <div class="card w-100">
