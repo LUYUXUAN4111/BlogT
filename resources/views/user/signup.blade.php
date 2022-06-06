@@ -54,7 +54,7 @@
                 <input type="password" class="form-control" id="exampleInputPassword1" name="password_c" placeholder="パスワード（確認）">
                 <label  class="col-form-label-sm"></label>
             </div>
-            <button type="submit" class="btn btn-primary row">Submit</button>
+            <button type="submit" class="btn btn-primary row">SignUp</button>
         </div>
     </form>
 </body>
