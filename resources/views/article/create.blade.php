@@ -59,8 +59,8 @@
             </div>
             <div class="page-right">
                 <div style="border: 1px solid #ccc;width:1000px;height: auto">
-                    <div id="editor-toolbar" style="border-bottom: 1px solid #ccc;width: 100%;"></div>
-                    <div id="editor-text-area"  style="min-height: 600px;;width: 100%;"></div>
+                    <div id="editor-toolbar" style="border-bottom: 1px solid #ccc;width: 100%;border-bottom: 1px solid #ccc;width: 100%;position: sticky;top: 80px;z-index: 100;"></div>
+                    <div id="editor-text-area"  style="min-height: 600px;;width: 100%;margin-bottom: 200px"></div>
                 </div>
             </div>
     </div>
